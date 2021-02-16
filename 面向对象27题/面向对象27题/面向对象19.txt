@@ -1,0 +1,42 @@
+19 重载<<输出圆
+问题描述 :
+定义一个圆类（Circle），其中：
+属性包括：
+  半径(radius)、周长(perim)和面积(area)，
+方法包括：
+  构造函数（以半径为参数，默认值为0，周长和面积在构造函数中生成）
+  重载运算符<<：输出半径、周长和面积。输出的格式为：
+  “radius:2;perim:12.56;area:12.56”
+请编写Circle类的代码并使用以下main函数测试：
+int main()
+{
+    double r;
+    while(cin>>r)
+    {
+        if (r>0)
+        {
+           Circle c1(r);
+           cout<<c1<<endl;
+        }
+        else
+        {
+           Circle c2;
+           cout<<c2<<endl;
+        }
+    }
+   return 0;
+}
+注：PI取值为3.14。
+输入说明 :
+可输入多组数据，每组数据占一行，包含一个半径值。
+输出说明 :
+对于每个输入的半径，输出对应的圆的信息，
+输出格式形如：
+radius:2;perim:12.56;area:12.56
+输入范例 :
+2
+0
+输出范例 :
+radius:2;perim:12.56;area:12.56
+radius:0;perim:0;area:0
+

@@ -1,0 +1,76 @@
+8 查找学生
+问题描述 :
+实验目的：学习string类型的使用；学习对象数组的使用。
+实验内容：
+  设计一个student类，包含学生学号、姓名、语文成绩、数学成绩。
+现有n个学生，保存在一个数组中，请对每个学生，分别计算语数两门课的平均成绩。
+此外，再设计一个函数findStudent，根据传入的学生数组和需要查找的姓名searchName，查找姓名中包含searchName的学生。比如输入”huang”，则输出所有姓名中包含”huang”的学生的成绩。
+
+分析：
+类中的属性可包括（但不仅限于）：number, name, chinese, math, average。其中，学号number为int类型，name为string类型，成绩为double类型。 
+类中的方法可包括（但不仅限于）：
+setChinese、getChinese、setMath、getMath、calcAverage、getAverage以及包含两个形参（学号和姓名）的构造函数。
+说明：
+由于成绩需要在0到100之间，因此语文成绩和数学成绩不能随意赋值，所以不能将chinese和math这两个属性设置为public，而是设置为private，同时增加两个方法，bool setChinese (int score)，bool setMath(int score)。
+这两个方法的逻辑为（以setChinese为例）：
+bool setChinese (int score)
+{
+   //如果形参score在0到100之间，则将chinese赋值为score，并返回true，否则将chinese赋值为0，并返回false
+}
+相应地，还需要增加getChinese方法，该方法里不需要进行什么处理，直接return chinese即可。可如下实现：
+double getChinese()
+{
+       return chinese;
+}
+对于number和name，一般也设置为private，仅通过构造函数给它们赋值，再增加两个方法： getNumber以及getName获取它们的值。
+main函数可参考如下代码：
+int main()
+{
+  int n,i;
+  int number;
+  string name, searchName;
+  double math,chinese;
+  cin>>n;
+  Student stu[n];
+  for(i=0;i<n;i++)
+  {
+    cin>>number>>name>>chinese>>math;
+    stu[i] = Student(number, name);
+    stu[i].setChinese(chinese);
+    stu[i].setMath(math);
+  }
+  cin>>searchName;  //输入需要查找的姓名
+  findStudent(stu, n, searchName);  //调用函数，查找学生，输出信息
+  return 0;
+}
+
+输入说明 :
+输入的第一行为学生的数目n，
+其后n行为n个学生的数据，每个学生的数据占一行，包括学号、姓名、语文成绩、数学成绩，其间以空格分隔。
+再后一行（最后一行）为需要查找的姓名。
+每行的开头和结尾无多余的空格。
+学号为整数，姓名为字符串，成绩为实数。姓名中不包含空格。
+
+输出说明 :
+输出符合条件的学生的学号、姓名、语文成绩、数学成绩及平均成绩，其间以一个空格分隔。
+如果输出多名学生，则每名学生独占一行。
+输出无多余空行及多余空格。
+输出的实数以cout的默认输出格式为准，比如实数82输出就是“82”，后面不会有小数点及“0”。
+如果未找到，则输出“Not found.”，不包括引号。
+输入范例 :
+10
+100 stu1 80 81
+101 stu12 82 83
+102 stu13 1000 81
+105 stu5 80 82
+104 stu4 80 81
+103 stu3 99 81
+106 stu6 86 88.5
+107 stu7 80 81
+108 John 0 0
+109 Kevin 0 100
+stu1
+输出范例 :
+100 stu1 80 81 80.5
+101 stu12 82 83 82.5
+102 stu13 0 81 40.5
