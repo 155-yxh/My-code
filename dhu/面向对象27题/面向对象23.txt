@@ -1,0 +1,40 @@
+23 计算周长
+问题描述 :
+已定义一个Shape抽象类、常量PI以及main函数。
+  请在Shape的基础上派生出矩形Rectangle和圆形Circle类，二者都有 GetPerim（）函数计算并返回对象的周长。
+  请编写这两个类的代码，使得在main函数中正确输出两个对象的周长。
+提供的代码如下：
+#include <iostream>
+using namespace std;
+const double PI=3.14;
+class Shape
+{
+public:
+    Shape() {}
+    ~Shape() {}
+    virtual float GetPerim()=0;
+};
+/*******在此编写代码********/
+int main()
+{
+    Shape * sp;
+    double r,width,height;
+    cin>>r;
+    sp=new Circle(r);
+    cout<<sp->GetPerim ()<<endl;
+    cin>>width>>height;
+    sp=new Rectangle(width,height);
+    cout<<sp->GetPerim()<<endl;
+    return 0;
+}
+输入说明 :
+输入共两行，第一行输入一个半径，第二行输入矩形的宽和高，用空格进行分隔。
+输出说明 :
+共输出两行，第一行输出圆的周长，第二行输出矩形的周长。
+输入范例 :
+10
+6 4
+输出范例 :
+62.8
+20
+

@@ -1,0 +1,43 @@
+20 长方形(类的实现)
+问题描述 :
+实验目的：学习组合对象的使用。
+实验内容：
+定义一个Point类，包括两个私有属性：int x, int y，它们分别表示一个点的x和y座标。
+再定义构造函数：
+Point(int x, int y)，即传两个参数，构造一个点对象。
+注意，本题要求Point类不得定义缺省构造函数，也就是只定义以上所说的构造函数。
+定义一个Rectangle类，包括三个私有属性：Point topLeft, int width, int height，它们分别表示长方形左上角顶点的座标，以及横向的宽度和纵向的高度。
+注意：在计算机系统里，座标系如下定义：屏幕的左上角的座标是（0,0），x轴是横轴，屏幕的最右端x值最大，y轴是纵轴，屏幕的最下方y值最大。图如下：
+再定义构造函数：
+Rectangle(int x, int y, int width, int height)
+以及实例方法：
+int getArea()    //获取该图形的面积
+bool isIn(Point p)   //判断传入的点是否在该图形之内（不包括边界），如果在内部返回true，否则返回false
+使用main函数测试以上getArea方法和isIn方法。main函数可参考如下代码：
+ int main()
+{
+       int topLeftX, topLeftY, width, height;
+       int px, py;
+       cin>>topLeftX>>topLeftY>>width>>height;
+       cin>>px>>py;
+    Point p(px, py);
+    Rectangle r(topLeftX, topLeftY, width, height);
+    cout<<r.getArea()<<endl;
+    if(r.isIn(p))
+        cout<<"In"<<endl;
+    else
+        cout<<"Not in"<<endl;
+       return 0;
+}
+输入说明 :
+第一行输入长方形r的信息，包括左上角顶点x座标、左上角顶点y座标、宽度、高度。
+第二行输入一个点p的信息，包括其x座标和y座标。
+所有输入都为非负整数，之间以一个空格分隔。无多余空格或空行。
+输出说明 :
+输出两行，第一行输出长方形面积，第二行输出点p是否位于长方形r之内，如果在内部，则输出“In”，否则输出“Not in”。
+输入范例 :
+10 20 50 80
+20 30
+输出范例 :
+4000
+In

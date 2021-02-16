@@ -1,0 +1,91 @@
+25 发工资
+问题描述 :
+实验目的：多态的应用
+实验内容：
+  公司有三类雇员：老板、销售员、实习生。
+  老板每月固定5000元；销售员每月2000元底薪加提成，提成的计算方式为销售额的10%；实习生的工资按实习时间计算，每小时30元。
+  现输入若干雇员的信息，请输出一个月该发多少工资。
+  要求：
+  首先声明类employee，包含：
+  数据成员：
+  string name;
+  string role;
+  double salary;
+ 以及
+ 构造函数：employee(string name, string role)，并且仅声明这一个构造函数，无默认构造函数。
+ 虚函数calcSalary
+ 普通成员函数showInformation（该输出雇员的姓名、角色、工资信息）
+ 普通成员函数getSalary（返回salary的值）
+  再声明三个employee的派生类：boss、salesman、intern，类中需要实现虚函数calcSalary。
+  在main函数中，首先输入若干雇员的信息，放入empList中，然后遍历empList，计算各雇员的工资，输出其信息，最后输出总工资。
+  main函数代码如下：
+  int main()
+  {
+    vector<employee *> empList;
+    int op, salesCount, workHours;
+    string name;
+    while (cin >> op)
+     {
+        switch (op)
+        {
+            case 1:
+            {
+                cin>>name;
+                employee *pe = new boss(name);
+                empList.push_back(pe);
+                break;
+            }
+            case 2:
+            {
+                cin>>name>>salesCount;
+                employee *pe=new salesman(name, salesCount);
+                empList.push_back(pe);
+                break;
+            }
+            case 3:
+            {
+                cin>>name>>workHours;
+                employee *pe=new intern(name, workHours);
+                empList.push_back(pe);
+                break;
+            }
+        }
+     }
+    double totalSalary = 0;
+    for(int i=0; i<empList.size(); i++)
+    {
+        empList.at(i)->calcSalary();//先利用各派生类的多态性计算出工资
+        totalSalary += empList.at(i)->getSalary();
+        empList.at(i)->showInformation();
+    }
+    cout<<"total salary:"<<totalSalary<<endl;
+    return 0;
+ }
+输入说明 :
+输入若干行，每行输入一个雇员的信息。
+每一行的输入形式为：
+首先输入一个整数，表示雇员的种类，1为老板，2为销售员，3为实习生。
+如果输入1，后面紧接着输入老板的姓名。
+如果输入2，后面紧接着输入销售员的姓名及销售额。
+如果输入3，后面紧接着输入实习生的姓名及实习小时数。
+输入的姓名中无空格，销售额及实习小时数均为整数。
+输出说明 :
+如果共有n个雇员，则共输出n+1行，
+前n行输出雇员的姓名、角色及工资，以空格分隔。角色为：boss、salesman、intern。
+第n+1行输出工资总额。
+n个雇员的输出顺序按照输入的顺序。
+输入范例 :
+1 David
+2 Kevin 10000
+3 stu1 80
+2 John 10200
+3 stu2 102
+3 stu3 0
+输出范例 :
+David boss 5000
+Kevin salesman 3000
+stu1 intern 2400
+John salesman 3020
+stu2 intern 3060
+stu3 intern 0
+total salary:16480
